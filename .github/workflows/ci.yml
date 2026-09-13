@@ -25,6 +25,13 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
+    - name: Generate Data and Train Model
+      run: |
+        python data/generate_synthetic_data.py
+        python src/train_model.py
+
     - name: Run Pytest Test Suite
+      env:
+        PYTHONPATH: .
       run: |
         pytest
